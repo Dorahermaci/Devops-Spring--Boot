@@ -1,0 +1,40 @@
+version: "3.3"
+
+services:
+
+  mysql-db:
+    image: mysql:latest
+    restart: always
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'devops'
+    ports:
+      - 3306:3306
+    networks:
+      - mynetwork
+    volumes:
+      - mysql:/var/lib/mysql
+  
+  springboot-app:
+  
+    image: adimoss/devopsrepository:latest
+    container_name: springboot-app
+    environment:
+      MYSQL_HOST: 'mysql-db'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_DATABASE: 'devops'
+    restart: on-failure
+    ports:
+      - 8089:8089 
+    links:
+      - mysql-db
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+
+volumes:
+  mysql:
