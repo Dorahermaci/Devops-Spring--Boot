@@ -32,12 +32,6 @@ services:
   
     image: dorrahr/devopsrepository:latest
     container_name: springboot-app
-    environment:
-      MYSQL_HOST: 'mysql-db'
-      MYSQL_USER: 'root'
-      MYSQL_PASSWORD: 'root'
-      MYSQL_DATABASE: 'devops'
-    restart: on-failure
     ports:
       - 8089:8089 
     links:
