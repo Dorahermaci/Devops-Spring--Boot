@@ -18,7 +18,7 @@ services:
   
   springboot-app:
   
-    image: adimoss/devopsrepository:latest
+    image: dorrahr/devopsrepository:latest
     container_name: springboot-app
     environment:
       MYSQL_HOST: 'mysql-db'
