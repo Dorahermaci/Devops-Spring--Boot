@@ -42,7 +42,8 @@ services:
       - db
     networks:
       - mynetwork
-    depend
+    depends_on:
+      - db
 
 networks:
   mynetwork:
