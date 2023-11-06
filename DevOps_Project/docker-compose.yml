@@ -1,21 +1,21 @@
-version: "3.3"
+version: "3.8"
 
 services:
 
-  mysql-db:
-    image: mysql:5.6
-    container_name: mysql-db
+  db:
+    image: mysql:latest
+    restart: always
+    container_name: db-container
     environment:
       MYSQL_ROOT_PASSWORD: 'root'
       MYSQL_DATABASE: 'devops'
     ports:
-      - target: 3306
-        published: 3306
-        protocol: tcp
-    volumes:
-      - mysql:/var/lib/mysql
+      - 3306:3306
     networks:
       - mynetwork
+    volumes:
+      - mysql:/var/lib/mysql
+
 
   phpmyadmin:
     image: phpmyadmin
@@ -24,7 +24,7 @@ services:
     ports:
       - 8090:80
     environment:
-      PMA_HOST: mysql-container
+      PMA_HOST: db-container
     networks:
       - mynetwork
 
@@ -32,17 +32,14 @@ services:
     image: dorrahr/devopsrepository:latest
     container_name: springboot-app
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/devops?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-      MYSQL_HOST: mysql-db
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_PASSWORD: root
-      MYSQL_DATABASE: devops
-    restart: on-failure
+      MYSQL_HOST: 'db'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_DATABASE: 'devops'
     ports:
-      - 8089:8089 
+      - 8089:8089
+    links:
+      - db
     networks:
       - mynetwork
 
