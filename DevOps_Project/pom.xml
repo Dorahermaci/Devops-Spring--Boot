@@ -48,6 +48,7 @@
 <dependency>
         <groupId>org.jacoco</groupId>
         <artifactId>org.jacoco.agent</artifactId>
+    <version>0.8.7</version> <!-- Remplacez par la version que vous souhaitez utiliser -->
         <scope>runtime</scope>
     </dependency>
         <dependency>
