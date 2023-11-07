@@ -1,3 +1,5 @@
+package tn.esprit.devops_project;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -9,12 +11,13 @@ import java.util.List;
 import java.util.Optional;
 import tn.esprit.devops_project.entities.ActivitySector;
 import tn.esprit.devops_project.repositories.ActivitySectorRepository;
+import tn.esprit.devops_project.services.ActivitySectorImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public ActivitySectorServiceTestMockito {
+public class ActivitySectorServiceTestMockito {
 
     @InjectMocks
     ActivitySectorImpl activitySectorService;
