@@ -1,5 +1,6 @@
 package tn.esprit.devops_project;
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
+@SpringBootTest(classes = ProductServiceImplTestJunit.TestConfig.class)
 public class ProductServiceImplTestJunit {
 
     @Autowired
@@ -123,5 +124,9 @@ public class ProductServiceImplTestJunit {
         // Assert
         assertNotNull(retrievedProducts);
         // Add more assertions as needed
+    }
+
+    // Custom test configuration to avoid loading the full Spring context
+    static class TestConfig {
     }
 }
