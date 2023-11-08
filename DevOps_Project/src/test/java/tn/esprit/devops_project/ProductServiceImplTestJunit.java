@@ -1,7 +1,9 @@
 package tn.esprit.devops_project;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.data.jpa.DataJpaTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import tn.esprit.devops_project.entities.Product;
 import tn.esprit.devops_project.entities.ProductCategory;
@@ -19,7 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
+@DataJpaTest
+@TestPropertySource(locations = "classpath:application-test.properties")
 public class ProductServiceImplTestJunit {
 
     @Autowired
@@ -119,5 +122,3 @@ public class ProductServiceImplTestJunit {
         // Add more assertions as needed
     }
 }
-
-
